@@ -14,4 +14,24 @@ public class SayHelloController {
     public String sayHello() {
         return "Hello! What are you learning today?";
     }
+
+    @RequestMapping("say-hello-html")
+    public String sayHelloHtml(){
+        // Using StringBuilder to create a HTML page is not the best practice
+        // but is better than using String concatenation
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html>");
+        sb.append("<head>");
+        sb.append("<title>");
+        sb.append("My First HTML page");
+        sb.append("</title>");
+        sb.append("</head>");
+        sb.append("<body>");
+        sb.append("<h1>");
+        sb.append("My First HTML page with body");
+        sb.append("</h1>");
+        sb.append("</body>");
+        sb.append("</html>");
+        return sb.toString();
+    }
 }
