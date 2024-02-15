@@ -29,7 +29,7 @@ public class SayHelloController {
         sb.append("</head>");
         sb.append("<body>");
         sb.append("<h1>");
-        sb.append("My First HTML page with body");
+        sb.append("My First HTML page with body - Changed");
         sb.append("</h1>");
         sb.append("</body>");
         sb.append("</html>");
