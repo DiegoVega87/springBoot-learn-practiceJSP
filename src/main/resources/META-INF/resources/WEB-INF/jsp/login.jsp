@@ -10,6 +10,7 @@
                 <input type="submit">
 
               </form>
+              <div> ${errorMessage} </div>
 
     </body>
 </html>
