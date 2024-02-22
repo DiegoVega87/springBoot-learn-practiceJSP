@@ -30,8 +30,8 @@ public class LoginController {
     @RequestMapping(value="login",method = RequestMethod.POST ) // This is the method that will be called when the form is submitted
     public String goToWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap model){
         if(authenticationService.authenticate(name,password)){
+
             model.put("name", name); // This is the data that will be passed to the welcome page
-            model.put("password", password);    // This is the data that will be passed to the welcome page
             return "welcome"; // This is the page that will be displayed after the form is submitted
         }else{
             model.put("errorMessage", "Invalid Credentials");
