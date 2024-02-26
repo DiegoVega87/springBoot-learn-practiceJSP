@@ -3,8 +3,8 @@
         <title>Welcome page</title>
     </head>
     <body>
-        <div>   Welcome to my first java webapp! </div>
-        <div> Your Name: ${name} </div>
+        <div>Welcome ${name} to my first java webapp! </div>
+        <hr>
         <div> <a href="list-todos">Manage</a> your todos  </div>
     </body>
 </html>
