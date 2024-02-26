@@ -3,10 +3,12 @@ package com.buildwebapps.practice.myfirstjavawebapp.todo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
 @Controller
+@SessionAttributes("name") // This is to tell Spring to keep the name in the session
 public class TodoController {
 
     private TodoService todoService;
