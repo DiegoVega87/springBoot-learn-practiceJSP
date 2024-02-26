@@ -26,6 +26,16 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>glassfish-jstl</artifactId>
+			<version>11.0.2</version> <!-- 11.0.2  Needs to be added!-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
