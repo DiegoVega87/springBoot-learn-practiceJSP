@@ -3,8 +3,9 @@
         <title>Welcome page</title>
     </head>
     <body>
-        <div>Welcome ${name} to my first java webapp! </div>
-        <hr>
-        <div> <a href="list-todos">Manage</a> your todos  </div>
+        <div class="container">
+            <h1>Welcome ${name} to my first java webapp! </h1>
+            <a href="list-todos">Manage</a> your todos
+        </div>
     </body>
 </html>
