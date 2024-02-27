@@ -31,7 +31,7 @@ public class TodoController {
     public String showNewTodoPage(ModelMap model){
         String username = (String) model.get("name");
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
-        model.put("todo",todo); // This is the data that will be passed to the Todos page (the form to add a new todo
+        model.put("todo",todo); // This is the data that will be passed to the Todos page (the form to add a new todo item)
         return "todo";
     }
 
