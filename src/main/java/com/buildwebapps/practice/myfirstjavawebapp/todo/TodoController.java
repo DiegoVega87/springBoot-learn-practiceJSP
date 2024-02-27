@@ -1,7 +1,9 @@
 package com.buildwebapps.practice.myfirstjavawebapp.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +38,11 @@ public class TodoController {
     }
 
     @RequestMapping(value="add-todo", method = RequestMethod.POST) // This is the method that will be called when the form is submitted
-    public String addNewTodoPage( ModelMap model, Todo todo){
+    public String addNewTodoPage(ModelMap model, @Valid Todo todo, BindingResult result){ // This is to validate the form
+        if(result.hasErrors()){ // This is to check if there are any errors in the form
+            return "todo";
+        }
+
         String username = (String) model.get("name");
         todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
         return "redirect:list-todos";

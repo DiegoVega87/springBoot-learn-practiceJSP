@@ -1,5 +1,7 @@
 package com.buildwebapps.practice.myfirstjavawebapp.todo;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 // Create a database (MySQL)
@@ -8,6 +10,7 @@ public class Todo {
 
     private int id;
     private String userName;
+    @Size(min=10, message="Enter at least 10 Characters...") // This is a validation for the description
     private String description;
     private LocalDate targetDate;
     private boolean done;
