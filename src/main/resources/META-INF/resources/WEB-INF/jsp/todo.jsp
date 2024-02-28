@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %> <!-- Used for SpringBoot 3.2.X and above -->
 
 <!-- uri="http://www.springframework.org/tags/form" is used to bind the form data to the model class -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
