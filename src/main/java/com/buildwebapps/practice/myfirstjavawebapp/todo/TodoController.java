@@ -47,4 +47,10 @@ public class TodoController {
         todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
         return "redirect:list-todos";
     }
+
+    @RequestMapping(value="delete-todo") // This is the method that will be called when the form is submitted
+    public String deleteTodo(@RequestParam int id){ // This is to get the id of the todo item to be deleted
+        todoService.deleteById(id);
+        return "redirect:list-todos";
+    }
 }
