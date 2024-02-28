@@ -53,4 +53,23 @@ public class TodoController {
         todoService.deleteById(id);
         return "redirect:list-todos";
     }
+
+    @RequestMapping(value = "update-todo", method = RequestMethod.GET) // This is the method that will be called when the form is submitted
+    public String updateTodoPage(@RequestParam int id, ModelMap model){ // This is to get the id of the todo item to be updated
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo); // This is the data that will be passed to the Todos page (the form to update a todo item)
+        return "todo";
+    }
+
+    @RequestMapping(value = "update-todo", method = RequestMethod.POST) // This is the method that will be called when the form is submitted
+    public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result){
+
+        if(result.hasErrors()){ // This is to check if there are any errors in the form
+            return "todo";
+        }
+        String username = (String) model.get("name");
+        todo.setUserName(username);
+        todoService.updateTodo(todo);
+        return "redirect:list-todos";
+    }
 }

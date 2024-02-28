@@ -1,5 +1,6 @@
 package com.buildwebapps.practice.myfirstjavawebapp.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -27,5 +28,14 @@ public class TodoService {
 
     public void deleteById(int id){
         todos.removeIf(todo -> todo.getId() == id); // This is a lambda expression to remove the todo item with the given id
+    }
+
+    public Todo findById(int id) {
+        return todos.stream().filter(todo -> todo.getId() == id).findFirst().get();
+    }
+
+    public void updateTodo(@Valid Todo todo) {
+        deleteById(todo.getId());
+        todos.add(todo);
     }
 }
