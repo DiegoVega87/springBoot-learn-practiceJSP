@@ -1,6 +1,8 @@
 package com.buildwebapps.practice.myfirstjavawebapp.todo;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -24,14 +26,21 @@ public class TodoController {
 
     @RequestMapping(value="list-todos") // This is the method that will be called when the form is submitted
     public String listAllTodos(ModelMap model){
-        List<Todo> todos = todoService.findByUsername("Diego");
+        String username = getLoggedinUsername(model);
+        List<Todo> todos = todoService.findByUsername(username);
         model.addAttribute("todos", todos); // This is the data that will be passed to the Todos page
         return "listTodos";
     }
 
+    private static String getLoggedinUsername(ModelMap model) {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
+    }
+
     @RequestMapping(value="add-todo", method = RequestMethod.GET) // This is the method that will be called when the form is submitted
     public String showNewTodoPage(ModelMap model){
-        String username = (String) model.get("name");
+        String username = getLoggedinUsername(model);
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
         model.put("todo",todo); // This is the data that will be passed to the Todos page (the form to add a new todo item)
         return "todo";
@@ -43,7 +52,7 @@ public class TodoController {
             return "todo";
         }
 
-        String username = (String) model.get("name");
+        String username = getLoggedinUsername(model);
         todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
         return "redirect:list-todos";
     }
@@ -67,7 +76,7 @@ public class TodoController {
         if(result.hasErrors()){ // This is to check if there are any errors in the form
             return "todo";
         }
-        String username = (String) model.get("name");
+        String username = getLoggedinUsername(model);
         todo.setUserName(username);
         todoService.updateTodo(todo);
         return "redirect:list-todos";

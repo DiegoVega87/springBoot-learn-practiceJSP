@@ -19,7 +19,9 @@ public class TodoService {
     }
 
     public List<Todo> findByUsername(String username){
-        return todos;
+        return todos.stream()
+                .filter(todo -> todo.getUserName().equalsIgnoreCase(username))
+                .toList();
     }
 
     public void addTodo(String name, String desc, LocalDate targetDate, boolean isDone){
