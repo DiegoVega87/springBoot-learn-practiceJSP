@@ -39,6 +39,11 @@ public class SpringSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    // All sites are protected by default
+    // A login form is shown for unauthenticated users
+    // CSRF needs to be disabled for H2 Console
+    // Frames need to be enabled for H2 Console
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { // This is to create the security filter chain
 
