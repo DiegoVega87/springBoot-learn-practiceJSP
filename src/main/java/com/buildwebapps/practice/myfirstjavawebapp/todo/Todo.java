@@ -1,23 +1,29 @@
 package com.buildwebapps.practice.myfirstjavawebapp.todo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 // Create a database (MySQL)
 // 1) Static List of todos --> Database (H2, MySQL)
+@Entity
 public class Todo {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private String userName;
+    private String username;
     @Size(min=10, message="Enter at least 10 Characters...") // This is a validation for the description
     private String description;
     private LocalDate targetDate;
     private boolean done;
 
-    public Todo(int id, String userName, String description, LocalDate targetDate, boolean done) {
+    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.description = description;
         this.targetDate = targetDate;
         this.done = done;
@@ -31,12 +37,12 @@ public class Todo {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDescription() {
@@ -67,7 +73,7 @@ public class Todo {
     public String toString() {
         return "Todo{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", description='" + description + '\'' +
                 ", targetDate=" + targetDate +
                 ", done=" + done +

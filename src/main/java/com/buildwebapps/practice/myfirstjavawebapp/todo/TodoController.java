@@ -77,7 +77,7 @@ public class TodoController {
             return "todo";
         }
         String username = getLoggedinUsername(model);
-        todo.setUserName(username);
+        todo.setUsername(username);
         todoService.updateTodo(todo);
         return "redirect:list-todos";
     }

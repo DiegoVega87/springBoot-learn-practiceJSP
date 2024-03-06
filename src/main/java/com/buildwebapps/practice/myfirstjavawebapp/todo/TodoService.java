@@ -20,7 +20,7 @@ public class TodoService {
 
     public List<Todo> findByUsername(String username){
         return todos.stream()
-                .filter(todo -> todo.getUserName().equalsIgnoreCase(username))
+                .filter(todo -> todo.getUsername().equalsIgnoreCase(username))
                 .toList();
     }
 
