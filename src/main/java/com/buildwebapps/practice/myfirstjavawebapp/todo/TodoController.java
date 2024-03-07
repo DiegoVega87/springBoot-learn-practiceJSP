@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+//@Controller
 @SessionAttributes("name") // This is to tell Spring to keep the name in the session
 public class TodoController {
 
