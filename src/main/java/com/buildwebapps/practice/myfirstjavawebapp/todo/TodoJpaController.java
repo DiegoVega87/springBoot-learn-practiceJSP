@@ -18,11 +18,9 @@ import java.util.List;
 @SessionAttributes("name") // This is to tell Spring to keep the name in the session
 public class TodoJpaController {
 
-    private TodoService todoService;
     private TodoJpaRepository repository;
 
-    public TodoJpaController(TodoService todoService, TodoJpaRepository repository) {
-        this.todoService = todoService;
+    public TodoJpaController(TodoJpaRepository repository) {
         this.repository = repository;
     }
 
@@ -55,19 +53,20 @@ public class TodoJpaController {
         }
 
         String username = getLoggedinUsername(model);
-        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
+        todo.setUsername(username);
+        repository.save(todo); // This is to save the todo item to the database (H2, MySQL
         return "redirect:list-todos";
     }
 
     @RequestMapping(value="delete-todo") // This is the method that will be called when the form is submitted
     public String deleteTodo(@RequestParam int id){ // This is to get the id of the todo item to be deleted
-        todoService.deleteById(id);
+        repository.deleteById(id); // This is to delete the todo item from the database (H2, MySQL)
         return "redirect:list-todos";
     }
 
     @RequestMapping(value = "update-todo", method = RequestMethod.GET) // This is the method that will be called when the form is submitted
-    public String updateTodoPage(@RequestParam int id, ModelMap model){ // This is to get the id of the todo item to be updated
-        Todo todo = todoService.findById(id);
+    public String showUpdateTodoPage(@RequestParam int id, ModelMap model){ // This is to get the id of the todo item to be updated
+        Todo todo = repository.findById(id).get(); // This is to get the todo item from the database (H2, MySQL)
         model.addAttribute("todo", todo); // This is the data that will be passed to the Todos page (the form to update a todo item)
         return "todo";
     }
@@ -80,7 +79,7 @@ public class TodoJpaController {
         }
         String username = getLoggedinUsername(model);
         todo.setUsername(username);
-        todoService.updateTodo(todo);
+        repository.save(todo); // This is to save the todo item to the database (H2, MySQL)
         return "redirect:list-todos";
     }
 }
