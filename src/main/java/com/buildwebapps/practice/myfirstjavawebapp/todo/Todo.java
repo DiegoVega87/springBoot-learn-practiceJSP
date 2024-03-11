@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Todo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "increment by 1") // This is to tell Spring to increment the id by 1
     private int id;
     private String username;
     @Size(min=10, message="Enter at least 10 Characters...") // This is a validation for the description
